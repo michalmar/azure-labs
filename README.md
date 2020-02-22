@@ -24,3 +24,9 @@ Contents: [HOL02 - Azure Machine Learning service](./HOL02-AML)
 Lets have a look on Azure Databricks platform and Spark ETL processing pipeline.
 
 Contents: [HOL03 - Databricks](./HOL03-Databricks)
+
+### Intro to Apache Spark (Databricks) 
+Lets have a quick look on basics of Apache Spark.
+
+Contents: [HOL04 - Apache Spark](./HOL04-Apache-Spark)
+
