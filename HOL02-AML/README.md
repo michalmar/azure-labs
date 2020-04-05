@@ -94,7 +94,7 @@ In **next part** of the lab you download a git repo.
 
 `cd *<your_username>*`
 
-`git clone https://github.com/azurecz/azuretechacademy-data-analyst-labs-day2.git`
+`git clone https://github.com/michalmar/azure-labs.git`
 
 ![clone_repo](./media/jupyter-clone-repo.jpg)
 
