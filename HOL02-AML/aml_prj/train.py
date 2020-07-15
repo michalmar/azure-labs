@@ -6,7 +6,8 @@ from azureml.core import Dataset, Run
 from sklearn.linear_model import Ridge
 from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import train_test_split
-from sklearn.externals import joblib
+# from sklearn.externals import joblib
+import joblib
 
 import lightgbm as lgb
 
