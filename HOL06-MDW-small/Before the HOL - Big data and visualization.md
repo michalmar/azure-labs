@@ -43,8 +43,6 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
     a. Trial subscriptions will not work.
 
-2. If you are not a Service Administrator or Co-administrator for the Azure subscription, or if you are running the lab in a hosted environment, you will need to install [Visual Studio 2019 Community](https://visualstudio.microsoft.com/downloads/) with the **ASP.NET and web development** and **Azure development** workloads.
-
 ## Before the hands-on lab
 
 Duration: 30 minutes
@@ -188,8 +186,6 @@ Quickly create and query a Synapse SQL pool (data warehouse) in Azure Synapse An
    > [!NOTE]
    > Creating a SQL pool in Azure Synapse may result in a new billable service. For more information, see [Azure Synapse Analytics pricing](https://azure.microsoft.com/pricing/details/synapse-analytics/).
 
-2. Download and install the newest version of [SQL Server Management Studio](/sql/ssms/download-sql-server-management-studio-ssms?toc=/azure/synapse-analytics/sql-data-warehouse/toc.json&bc=/azure/synapse-analytics/sql-data-warehouse/breadcrumb/toc.json&view=azure-sqldw-latest) (SSMS).
-
 #### Sign in to the Azure portal
 
 Sign in to the [Azure portal](https://portal.azure.com/).
@@ -219,7 +215,7 @@ Follow these steps to create a SQL pool that contains the **AdventureWorksDW** s
 
    ![create a data warehouse basic details](./media/create-data-warehouse-portal/create-sql-pool-basics.png)
 
-4. Under **Performance level**, select **Select performance level** to optionally change your configuration with a slider.
+4. Under **Performance level**, select **Select performance level** to optionally change your configuration with a slider. For the workshop DW200 is sufficient.
 
    ![change data warehouse performance level](./media/create-data-warehouse-portal/create-sql-pool-performance-level.png)  
 
