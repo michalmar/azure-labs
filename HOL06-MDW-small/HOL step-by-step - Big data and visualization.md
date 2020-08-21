@@ -52,7 +52,10 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
     - [Task 2: Trigger workflow](#task-2-trigger-workflow)
   - [Exercise 6: Summarize data using Azure Databricks](#exercise-6-summarize-data-using-azure-databricks)
     - [Task 1: Summarize delays by airport](#task-1-summarize-delays-by-airport)
-  - [Exercise 7: Visualizing in Power BI Desktop](#exercise-7-visualizing-in-power-bi-desktop)
+  - [Exercise 7: Load data into Azure Synapse](#exercise-7-load-data-into-azure-synapse)
+    - [Task 1: Open Azure Databricks and run lab notebook](#task-1-open-azure-databricks-and-run-lab-notebook)
+    - [Task 2: View loaded data](task-2-view-loaded-data)
+  - [Exercise 8: Visualizing in Power BI Desktop](#exercise-8-visualizing-in-power-bi-desktop)
     - [Task 1: Obtain the JDBC connection string to your Azure Databricks cluster](#task-1-obtain-the-jdbc-connection-string-to-your-azure-databricks-cluster)
     - [Task 2: Connect to Azure Databricks using Power BI Desktop](#task-2-connect-to-azure-databricks-using-power-bi-desktop)
     - [Task 3: Create Power BI report](#task-3-create-power-bi-report)
@@ -599,7 +602,23 @@ In this exercise, you will prepare a summary of flight delay data using Spark SQ
 
 2. Execute each cell and follow the instructions in the notebook that explains each step.
 
-## Exercise 7: Visualizing in Power BI Desktop
+## Exercise 7: Load data into Azure Synapse
+
+Duration: 20 minutes
+
+In this exercise, you will connect from Databricks directly to Azure Synapse and perform direct load of prediction dataframe into SQL table.
+
+### Task 1: Open Azure Databricks and run lab notebook
+
+In the Databricks notebook please fill/update accordingly necessary variables, such as `storageAccountName`, `sqlDwServerName` etc.
+
+### Task 2: View loaded data
+
+Navigate to the Synapse Analytics Workspace and review the loaded data in the database table. Alternatively, you can open your tool of choice - SQL Server Management Studio, Azure Data Studio, etc. to perform this operation.
+
+ ![View data in Azure Synapse.](media/azure-synapse-explore-data.png 'Synapse workspace')
+
+## Exercise 8: Visualizing in Power BI Desktop
 
 Duration: 20 minutes
 

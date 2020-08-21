@@ -1,3 +1,5 @@
+> **Note**: This is a shorter and tailored version of the original Microsoft Cloud Workshop session for **Big data and visualization**. The original content can be found at: https://github.com/microsoft/MCW-Big-data-and-visualization
+
 # Big data and visualization hands-on lab
 
 Margie's Travel (MT) provides concierge services for business travelers. In an increasingly crowded market, they are always looking for ways to differentiate themselves, and provide added value to their corporate customers.

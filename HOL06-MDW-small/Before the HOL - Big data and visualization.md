@@ -131,6 +131,8 @@ In this task, you will create a storage container in which you will store your f
 
    ![The Containers menu item located in the Blob service section is selected from the menu. The + Container item is selected in the the toolbar. The New container form is populated with the values outlined above.](media/azure-storage-create-container.png)
 
+4. Repeat previous step to create **dwtemp** container.
+
 ### Task 4: Provision Azure Data Factory
 
 Create a new Azure Data Factory instance that will be used to orchestrate data transfers for analysis.
@@ -271,5 +273,17 @@ You can now connect to the server and its SQL pools using this IP address. The c
 > [!IMPORTANT]
 > By default, access through the SQL Database firewall is enabled for all Azure services. select **OFF** on this page and then select **Save** to disable the firewall for all Azure services.
 
+
+#### Get the fully qualified server name
+
+Get the fully qualified server name for your server in the Azure portal. Later you use the fully qualified name when connecting to the server.
+
+1. Sign in to the [Azure portal](https://portal.azure.com/).
+
+2. Select **Azure Synapse Analytics** from the left-hand menu, and select your  on the **Azure Synapse Analytics** page.
+
+3. In the **Essentials** pane in the Azure portal page for your database, locate and then copy the **Server name**. In this example, the fully qualified name is sqlpoolservername.database.windows.net.
+
+    ![connection information](./media/create-data-warehouse-portal/find-server-name-copy.png)
 
 You should follow all these steps provided _before_ attending the Hands-on lab.
