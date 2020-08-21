@@ -43,8 +43,7 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
     - [Task 2: Open Azure Databricks and complete lab notebooks](#task-3-open-azure-databricks-and-complete-lab-notebooks)
   - [Exercise 3: Setup Azure Data Factory](#exercise-3-setup-azure-data-factory)
     - [Task 1: Download and stage data to be processed](#task-1-download-and-stage-data-to-be-processed)
-    - [Task 2: Install and configure Azure Data Factory Integration Runtime on your machine](#task-2-install-and-configure-azure-data-factory-integration-runtime-on-your-machine)
-    - [Task 3: Configure Azure Data Factory](#task-3-configure-azure-data-factory)
+    - [Task 2: Configure Azure Data Factory](#task-2-configure-azure-data-factory)
   - [Exercise 4: Develop a data factory pipeline for data movement](#exercise-4-develop-a-data-factory-pipeline-for-data-movement)
     - [Task 1: Create copy pipeline using the Copy Data Wizard](#task-1-create-copy-pipeline-using-the-copy-data-wizard)
   - [Exercise 5: Operationalize ML scoring with Azure Databricks and Data Factory](#exercise-5-operationalize-ml-scoring-with-azure-databricks-and-data-factory)
@@ -250,41 +249,7 @@ In this exercise, you will create a baseline environment for Azure Data Factory 
 
 3. Extract it to a new folder called **C:\\Data**.
 
-### Task 2: Install and configure Azure Data Factory Integration Runtime on your machine
-
-1. To download the latest version of Azure Data Factory Integration Runtime, go to <https://www.microsoft.com/en-us/download/details.aspx?id=39717>.
-
-2. Select Download, then choose the download you want from the next screen.
-
-   ![Under Choose the download you want, the latest version MSI file is selected.](media/download-ir.png 'Choose the download you want section')
-
-3. Run the installer, once downloaded.
-
-4. When you see the following screen, select Next.
-
-   ![The Welcome page in the Microsoft Integration Runtime Setup Wizard displays. A language drop down list is shown and the Next button is selected.](media/image114.png 'Microsoft Integration Runtime Setup Wizard')
-
-5. Check the box to accept the terms and select Next.
-
-   ![On the End-User License Agreement page, the check box to accept the license agreement is selected, as is the Next button.](media/image115.png 'End-User License Agreement page')
-
-6. Accept the default Destination Folder, and select Next.
-
-   ![On the Destination folder page, the destination folder is set to C:\Program Files\Microsoft Integration Runtime\ and the Next button is selected.](media/image116.png 'Destination folder page')
-
-7. Choose Install to complete the installation.
-
-   ![On the Ready to install Microsoft Integration Runtime page, the Install button is selected.](media/image117.png 'Ready to install page')
-
-8. Select Finish once the installation has completed.
-
-   ![On the Completed the Microsoft Integration Runtime Setup Wizard page, the Finish button is selected.](media/image118.png 'Completed the Wizard page')
-
-9. After selecting Finish, the following screen will appear. Keep it open for now. You will come back to this screen once the Data Factory in Azure has been provisioned, and obtain the gateway key so we can connect Data Factory to this "on-premises" server.
-
-   ![The Microsoft Integration Runtime Configuration Manager, Register Integration Runtime dialog displays.](media/image119.png 'Register Integration Runtime page')
-
-### Task 3: Configure Azure Data Factory
+### Task 2: Configure Azure Data Factory
 
 1. Launch a new browser window, and navigate to the Azure portal (<https://portal.azure.com>). Once prompted, log in with your Microsoft Azure credentials. If prompted, choose whether your account is an organization account or a Microsoft account. This will be based on which account was used to provision your Azure subscription that is being used for this lab.
 
@@ -300,53 +265,43 @@ In this exercise, you will create a baseline environment for Azure Data Factory 
 
    ![In the left menu, the Manage icon is selected.](media/adf-home-manage-link.png 'Manage link on ADF home page')
 
-6. Now, select **Integration runtimes** in the menu beneath Connections (1), then select **+ New** (2).
+6. Now, select **Linked Services** in the menu beneath Connections (1), then select **+ New** (2). On the New Linked Service dialog, enter the following:
 
-   ![The Integration runtimes menu item is selected selected, and the + New button is selected.](media/adf-new-ir.png 'Steps to create a new Integration Runtime connection')
+   - **Name**: `AzureDatabricks`
+  
+   - **Connect via integration runtime**: Leave set to Default.
+  
+   - **Account selection method**: **From Azure subscription**
+  
+   - **Azure subscription**: Choose your Azure Subscription.
+  
+   - **Databricks workspace**: Pick your Databricks workspace to populate the Domain automatically.
+  
+   - **Select cluster**: **Existing interactive cluster**
 
-7. In the Integration Runtime Setup blade that appears, select **Azure, Self-Hosted**, then select **Continue**.
+   ![The New linked service form is shown populated with the previously listed values.](media/adf-ml-databricks-service-settings.png 'Databricks Linked Service settings')
 
-   ![In the Integration runtime setup options, select Azure, Self-Hosted. Perform data flows, data movement, and dispatch activities to external compute.The Continue button is selected.](media/adf-ir-setup-1.png 'Integration Runtime Setup step 1')
+7. Leave the form open and open your Azure Databricks workspace in another browser tab. You will generate and retrieve the Access token here.
 
-8. Select **Self-Hosted** then select **Continue**.
+8. In Azure Databricks, select the Account icon in the top corner of the window, then select **User Settings**.
 
-   ![In the Network environment selected, Self-Hosted is selected and the Continue button is highlighted.](media/adf-ir-setup-2.png 'Integration Runtime Setup step 2')
+   ![The Account icon is selected in Azure Databricks. User Settings is selected from the list of Account options.](media/databricks-select-user-settings.png 'Azure Databricks user account settings')
 
-9. Enter a **Name**, such as bigdatagateway-\[initials\], and select **Create**.
+9. Select **Generate New Token** under the Access Tokens tab. Enter **ADF access** for the comment and leave the lifetime at 90 days. Select **Generate**.
 
-   ![In the Integration runtime setup form, the Name textbox is populated with the value defined above.](media/adf-ir-setup-3.png 'Integration Runtime Setup step 3')
+   ![The Generate New Token modal is shown with the previously specified values.](media/databricks-generate-new-token.png 'Generate New Token')
 
-10. Under Option 2: Manual setup, copy the Key1 authentication key value by selecting the Copy button, then select **Close**.
+10. **Copy** the generated token and **paste it into a text editor** such as Notepad for a later step.
 
-    ![Beneath Option 2: Manual setup, the Key 1 textbox and copy button are highlighted.](media/adf-ir-setup-4.png 'Integration Runtime Setup step 4')
+    ![Copy the generated token.](media/databricks-copy-token.png 'Copy generated token')
 
-11. _Don't close the current screen or browser session_.
+11. Switch back to your Azure Data Factory screen and paste the generated token into the **Access token** field within the form. After a moment, select your cluster underneath **Choose from existing clusters**. Select **Create**.
 
-12. Paste the **Key1** value into the box in the middle of the Microsoft Integration Runtime Configuration Manager screen.
+    ![In the New linked service form, the access token is pasted into the Access Token field and the Azure Databricks Cluster (lab) is selected.](media/adf-ml-access-token.png 'Paste access token')
 
-    ![The Microsoft Integration Runtime Configuration Manager Register Integration Runtime page displays with the Key1 value pasted into the textbox. A green checkmark next to the textbox denotes it's a valid key.](media/image127.png 'Microsoft Integration Runtime Configuration Manager')
+12. Switch back to Azure Databricks. Select **Workspace** in the menu. Select the **Exercise 5** folder then open notebook **01 Deploy for Batch Scoring**. Examine the content but _don't run any of the cells yet_. You need to **replace `STORAGE-ACCOUNT-NAME`** with the name of the blob storage account you copied in Exercise 1 into Cmd 4.
 
-13. Select **Register**.
-
-14. It can take up to a minute or two to register. If it takes more than a couple of minutes, and the screen does not respond or returns an error message, close the screen by selecting the **Cancel** button.
-
-15. The next screen will be New Integration Runtime (Self-hosted) Node. Select Finish.
-
-    ![The Microsoft Integration Runtime Configuration Manager New Integration Runtime (Self-hosted) Node page displays with a Finish button.](media/adf-ir-self-hosted-node.png 'Microsoft Integration Runtime Configuration Manager')
-
-16. You will then get a screen with a confirmation message. Select the **Launch Configuration Manager** button to view the connection details.
-
-    ![The Microsoft Integration Runtime Configuration Manager Indicates the Integration Runtime (Self-hosted) node has been successfully registered. The Launch Configuration Manager button is highlighted.](media/adf-ir-launch-config-manager.png 'Microsoft Integration Runtime Configuration Manager')
-
-    ![The Microsoft Integration Runtime Configuration Manager indicates the Self-hosted note is connected to the cloud service.](media/adf-ir-config-manager.png 'Microsoft Integration Runtime Configuration Manager')
-
-17. You can now return to the Azure Data Factory page, and view the Integration Runtime you just configured. You may need to select **Refresh** to view the Running status for the IR.
-
-    ![In the Connections tab in Azure Data Factory, the Integration runtimes tab is selected and the integration runtime bigdatagateway-initials is shown in the list.](media/adf-ir-running.png 'Integration Runtime in running state')
-
-18. Select the Azure Data Factory Overview button on the menu. Leave this open for the next exercise.
-
-    ![The Azure Data Factory Overview button is selected from the left menu.](media/adf-overview.png 'ADF Overview')
+    ![In the Azure Databricks workspaces, beneath BigDataVis, the Exercise 5 folder is selected. Beneath Exercise 5 the 01 Deploy for Batch Score notebook is selected.](media/databricks-workspace-create-folder.png 'Create folder')
 
 ## Exercise 4: Develop a data factory pipeline for data movement
 
@@ -520,47 +475,9 @@ In this exercise, you will extend the Data Factory to operationalize the scoring
 
    ![BatchScore is entered into the Name textbox under the General tab.](media/adf-ml-notebook-general.png 'Databricks Notebook General Tab')
 
-5. Select the **Azure Databricks** tab, and select **+ New** next to the Databricks Linked service drop down. Here, you will configure a new linked service which will serve as the connection to your Databricks cluster.
+5. Select the **Azure Databricks** tab, and select the Databricks linked service created before from the dropdown menu.
 
    ![In the Azure Databricks tab, the + New button is selected next to the Databricks Linked Service textbox.](media/adf-ml-settings-new-link.png 'Databricks Notebook Settings Tab')
-
-6. On the New Linked Service dialog, enter the following:
-
-   - **Name**: `AzureDatabricks`
-  
-   - **Connect via integration runtime**: Leave set to Default.
-  
-   - **Account selection method**: **From Azure subscription**
-  
-   - **Azure subscription**: Choose your Azure Subscription.
-  
-   - **Databricks workspace**: Pick your Databricks workspace to populate the Domain automatically.
-  
-   - **Select cluster**: **Existing interactive cluster**
-
-   ![The New linked service form is shown populated with the previously listed values.](media/adf-ml-databricks-service-settings.png 'Databricks Linked Service settings')
-
-7. Leave the form open and open your Azure Databricks workspace in another browser tab. You will generate and retrieve the Access token here.
-
-8. In Azure Databricks, select the Account icon in the top corner of the window, then select **User Settings**.
-
-   ![The Account icon is selected in Azure Databricks. User Settings is selected from the list of Account options.](media/databricks-select-user-settings.png 'Azure Databricks user account settings')
-
-9. Select **Generate New Token** under the Access Tokens tab. Enter **ADF access** for the comment and leave the lifetime at 90 days. Select **Generate**.
-
-   ![The Generate New Token modal is shown with the previously specified values.](media/databricks-generate-new-token.png 'Generate New Token')
-
-10. **Copy** the generated token and **paste it into a text editor** such as Notepad for a later step.
-
-    ![Copy the generated token.](media/databricks-copy-token.png 'Copy generated token')
-
-11. Switch back to your Azure Data Factory screen and paste the generated token into the **Access token** field within the form. After a moment, select your cluster underneath **Choose from existing clusters**. Select **Create**.
-
-    ![In the New linked service form, the access token is pasted into the Access Token field and the Azure Databricks Cluster (lab) is selected.](media/adf-ml-access-token.png 'Paste access token')
-
-12. Switch back to Azure Databricks. Select **Workspace** in the menu. Select the **Exercise 5** folder then open notebook **01 Deploy for Batch Scoring**. Examine the content but _don't run any of the cells yet_. You need to **replace `STORAGE-ACCOUNT-NAME`** with the name of the blob storage account you copied in Exercise 1 into Cmd 4.
-
-    ![In the Azure Databricks workspaces, beneath BigDataVis, the Exercise 5 folder is selected. Beneath Exercise 5 the 01 Deploy for Batch Score notebook is selected.](media/databricks-workspace-create-folder.png 'Create folder')
 
 13. Switch back to your Azure Data Factory screen. Select the **Settings** tab, then browse to your **Exercise 5/01 Deploy for Batch Score** notebook into the Notebook path field.
 
