@@ -127,7 +127,7 @@ You have provisioned an Azure Databricks workspace, and now you need to create a
 
    - **Pool**: Select **None**
 
-   - **Databricks Runtime Version**: **Runtime: 6.5 (Scala 2.11, Spark 2.4.5)** (**Note**: the runtime version may have **LTS** after the version. This is also a valid selection.)
+   - **Databricks Runtime Version**: **Runtime: 7.2 ML (includes Apache Spark 3.0.0, Scala 2.12)** (**Note**: we are going to use ML runtime with respect to the Machine Learning)
 
    - **Enable Autoscaling**: **Uncheck** this option.
 
