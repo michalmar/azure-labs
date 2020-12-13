@@ -30,3 +30,15 @@ Lets have a quick look on basics of Apache Spark.
 
 Contents: [HOL04 - Apache Spark](./HOL04-Apache-Spark)
 
+### Intro to MLOps with AML
+Lets have a try MLOps process with AML
+
+Contents: [HOL05 - MLOps](./HOL05-MLOps)
+
+### Intro to Modern Data Warehouse pattern - small
+Lets take a look on Modern Data Warehouse pattern
+
+Contents: [HOL06 - MDW Small](./HOL06-MDW-Small)
+
+
+
