@@ -7,6 +7,8 @@ In this lab you will continue ([prev lab](./02-use-plain-R.md)) to work with R m
 - Run training on Remote Compute (AML Cluster)
 - Examine training results in AML Studio
 
+This lab is based on [Azure Machine Learning SDK for R (preview)](https://github.com/Azure/azureml-sdk-for-r) repo.
+
 ## PREREQUISITIES
 
 - Azure Subscription

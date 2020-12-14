@@ -1,5 +1,7 @@
 # Data Science Virtual Machine lab
 
+In this lab you will provision Data Science Virtual Machine, a comprehensive pre-configured virtual machines for data science modelling, development and deployment.
+
 ## Provision / Setup the VM in Azure Portal
 
 1. Open Azure Portal [https://portal.azure.com/](https://portal.azure.com/)
@@ -29,7 +31,7 @@
 ![step 7](./media/dsvm-6.png) 
 1. Check the details - Public IP or hit **Connect** which will open the Remote Desktop Connection -> use your credentials to login (entered previously)
 ![step 8](./media/dsvm-7.png)
-1. You are now logged into DSVM and should see the Windows screen / Destop
+1. You are now logged into DSVM and should see the Windows screen / Desktop
 ![step 9](./media/dsvm-8.png)
 1. check out the pre-installed SW:
     
