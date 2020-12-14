@@ -38,5 +38,5 @@
     - VS Code
     - and many others...
 
-End of lab.
+**End of lab.**
 

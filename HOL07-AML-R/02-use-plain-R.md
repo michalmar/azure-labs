@@ -6,7 +6,7 @@ In this lab you will use Azure Data Science Virtual Machine to access presintall
 ## PREREQUISITIES
 
 - Azure Subscription
-- Data Science Virtual Machine (Linux/Windows)
+- Data Science Virtual Machine (Linux/Windows) - see [01-dsvm-lab](./01-dsvm-lab.md) for instruction on how to set up
 
 
 ## Setup
@@ -21,6 +21,9 @@ In case you are using **DSVM Windows**, log in using RDP and there work with pre
 1. Open your RStudio
 1. Navigate to folder `azure-labs/HOL07-AML-R`
 1. Set that folder as your wokring directory in R: `setwd("~/azure-labs/HOL07-AML-R")` (you can also use GUI for that)
-1. Open `train-R-only.R` in the RStudio and follow instruction from there.
+1. Open `train-R-only.R` in the RStudio.You should be able to see something like this:
+![img](./media/hol2-2.png)
+1. Follow the instructions in the R file - run by individual comands.
 
+**End of lab.**
 
