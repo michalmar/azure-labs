@@ -57,7 +57,11 @@ Go to [AML Studio](https://ml.azure.com) and **sign in** and locate your newly c
 
 In your workspace in Azure Machine Learning studio, create a new compute instance from either the **Compute** section or in the **Notebooks** section when you are ready to run one of your notebooks.
 
-![Create a new resource](media/create-compute-instance.png)
+![Create a new resource](media/ci-setup1.png)
+
+Hit next.
+
+![Create a new resource](media/ci-setup2.png)
 
 |Field  |Description  |
 |---------|---------|
